@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bilal Abid AI - Fast & Smart AI Assistant</title>
+    <title>Bilal Abid AI - Fast & Smart Q&A</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Highlight.js for Syntax Highlighting -->
+    <!-- Highlight.js -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/tokyo-night-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-    <!-- Marked.js for Markdown Parsing -->
+    <!-- Marked.js for Markdown -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     
     <!-- Google AdSense Script (Replace ca-pub-XXXXXXXXXXXXXXXX with your actual Publisher ID) -->
@@ -37,9 +37,6 @@
             border: 1px solid #1e293b;
             overflow-x: auto;
         }
-        .prose code {
-            font-family: monospace;
-        }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans antialiased">
@@ -52,18 +49,16 @@
             </div>
             <div>
                 <h1 class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-indigo-300 to-purple-300">Bilal Abid AI</h1>
-                <p class="text-[11px] text-slate-400 font-medium">Ultra-Fast Multi-Purpose Q&A Engine</p>
+                <p class="text-[11px] text-slate-400 font-medium">Ultra-Fast Q&A Engine</p>
             </div>
         </div>
 
-        <div class="flex items-center gap-3">
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Public Online
-            </span>
-        </div>
+        <button onclick="toggleSettingsModal()" class="px-4 py-2 text-xs font-medium bg-slate-900 hover:bg-slate-800 text-slate-200 rounded-xl border border-slate-700 transition flex items-center gap-2 shadow-sm">
+            <i class="fa-solid fa-key text-yellow-400"></i> API Key Settings
+        </button>
     </header>
 
-    <!-- AdSense Top Banner Container -->
+    <!-- AdSense Top Banner -->
     <div class="max-w-4xl mx-auto w-full px-4 mt-4">
         <div class="p-3 border border-dashed border-slate-800 bg-slate-900/40 rounded-xl text-center">
             <ins class="adsbygoogle"
@@ -78,42 +73,32 @@
         </div>
     </div>
 
-    <!-- Main Content Chat Container -->
+    <!-- Main Container -->
     <main class="flex-1 max-w-4xl w-full mx-auto px-4 py-6 flex flex-col justify-between">
         
-        <!-- Chat Stream Box -->
+        <!-- Chat Box -->
         <div id="chat-box" class="chat-scroll flex-1 overflow-y-auto space-y-6 mb-6 pr-2 min-h-[420px]">
-            <!-- Hero Welcome Card -->
             <div class="glass-panel p-8 rounded-3xl border border-slate-800/80 text-center space-y-4 shadow-2xl">
                 <div class="inline-flex p-3 bg-indigo-500/10 rounded-2xl text-indigo-400 mb-2">
-                    <i class="fa-solid fa-bolt text-2xl animate-bounce"></i>
+                    <i class="fa-solid fa-bolt text-2xl"></i>
                 </div>
                 <h2 class="text-3xl font-extrabold text-white tracking-tight">Ask Bilal Abid AI Anything</h2>
-                <p class="text-slate-400 text-sm max-w-lg mx-auto leading-relaxed">Instant, high-speed responses powered by Google Gemini Serverless Backend. Zero configuration needed for public visitors.</p>
+                <p class="text-slate-400 text-sm max-w-lg mx-auto leading-relaxed">Lightning-fast responses powered by Google Gemini AI.</p>
                 
-                <!-- Quick Starter Prompts -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-4 max-w-2xl mx-auto text-left">
-                    <button onclick="sendQuickPrompt('Explain Artificial Intelligence in 2 simple sentences.')" class="p-3.5 bg-slate-900/90 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 rounded-2xl text-xs text-slate-300 transition flex justify-between items-center group shadow-sm">
-                        <span>⚡ What is Artificial Intelligence?</span>
-                        <i class="fa-solid fa-arrow-right text-slate-500 group-hover:text-indigo-400 transition-transform group-hover:translate-x-1"></i>
+                    <button onclick="sendQuickPrompt('Explain Quantum Computing in simple terms.')" class="p-3.5 bg-slate-900/90 hover:bg-slate-800 border border-slate-800 rounded-2xl text-xs text-slate-300 transition flex justify-between items-center group">
+                        <span>⚡ What is Quantum Computing?</span>
+                        <i class="fa-solid fa-arrow-right text-slate-500 group-hover:text-indigo-400"></i>
                     </button>
-                    <button onclick="sendQuickPrompt('Write a clean Python script to fetch data from an API.')" class="p-3.5 bg-slate-900/90 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 rounded-2xl text-xs text-slate-300 transition flex justify-between items-center group shadow-sm">
-                        <span>💻 Python API Fetch Script</span>
-                        <i class="fa-solid fa-arrow-right text-slate-500 group-hover:text-indigo-400 transition-transform group-hover:translate-x-1"></i>
-                    </button>
-                    <button onclick="sendQuickPrompt('Give me 5 proven tips for website SEO optimization.')" class="p-3.5 bg-slate-900/90 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 rounded-2xl text-xs text-slate-300 transition flex justify-between items-center group shadow-sm">
-                        <span>🚀 SEO Tips for Websites</span>
-                        <i class="fa-solid fa-arrow-right text-slate-500 group-hover:text-indigo-400 transition-transform group-hover:translate-x-1"></i>
-                    </button>
-                    <button onclick="sendQuickPrompt('Write a professional email asking for a project update.')" class="p-3.5 bg-slate-900/90 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 rounded-2xl text-xs text-slate-300 transition flex justify-between items-center group shadow-sm">
-                        <span>✉️ Professional Email Template</span>
-                        <i class="fa-solid fa-arrow-right text-slate-500 group-hover:text-indigo-400 transition-transform group-hover:translate-x-1"></i>
+                    <button onclick="sendQuickPrompt('Write a fast Python script to parse JSON data.')" class="p-3.5 bg-slate-900/90 hover:bg-slate-800 border border-slate-800 rounded-2xl text-xs text-slate-300 transition flex justify-between items-center group">
+                        <span>💻 Python JSON Parser Script</span>
+                        <i class="fa-solid fa-arrow-right text-slate-500 group-hover:text-indigo-400"></i>
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- Sticky Chat Input Bar -->
+        <!-- Chat Input -->
         <div class="sticky bottom-4">
             <form id="chat-form" onsubmit="handleChatSubmit(event)" class="relative flex items-center">
                 <input 
@@ -122,24 +107,23 @@
                     placeholder="Type your question here..." 
                     required 
                     autocomplete="off"
-                    class="w-full bg-slate-900/95 border border-slate-700/80 focus:border-indigo-500 rounded-2xl py-4 pl-5 pr-14 text-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 shadow-2xl backdrop-blur-xl transition"
+                    class="w-full bg-slate-900/95 border border-slate-700/80 focus:border-indigo-500 rounded-2xl py-4 pl-5 pr-14 text-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 shadow-2xl backdrop-blur-xl"
                 >
                 <button 
                     type="submit" 
-                    id="send-btn"
-                    class="absolute right-2.5 top-2.5 bottom-2.5 px-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white rounded-xl font-medium transition flex items-center justify-center shadow-md shadow-indigo-600/30"
+                    class="absolute right-2.5 top-2.5 bottom-2.5 px-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white rounded-xl font-medium transition flex items-center justify-center shadow-md"
                 >
                     <i class="fa-solid fa-paper-plane text-xs"></i>
                 </button>
             </form>
             <div class="flex justify-between items-center mt-2 px-3 text-[11px] text-slate-500">
-                <span class="flex items-center gap-1"><i class="fa-solid fa-shield-halved text-emerald-400"></i> Secure Netlify Serverless Backend</span>
-                <span id="speed-indicator">Response Speed: Instant</span>
+                <span>⚡ Gemini API Direct Engine</span>
+                <span id="speed-indicator">Response Speed: Ready</span>
             </div>
         </div>
     </main>
 
-    <!-- AdSense Bottom Banner Container -->
+    <!-- AdSense Bottom Banner -->
     <div class="max-w-4xl mx-auto w-full px-4 mb-6">
         <div class="p-3 border border-dashed border-slate-800 bg-slate-900/30 rounded-xl text-center">
             <ins class="adsbygoogle"
@@ -154,13 +138,52 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="text-center py-4 text-xs text-slate-500 border-t border-slate-900">
-        &copy; 2026 Bilal Abid AI. All rights reserved.
-    </footer>
+    <!-- API Key Settings Modal -->
+    <div id="settings-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+        <div class="glass-panel bg-slate-900 p-6 rounded-3xl max-w-md w-full border border-slate-800 space-y-4">
+            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                <i class="fa-solid fa-key text-yellow-400"></i> Configure Gemini API Key
+            </h3>
+            <p class="text-xs text-slate-400">
+                Enter your free Google Gemini API key to enable live AI responses.
+            </p>
+            <input 
+                type="password" 
+                id="api-key-input" 
+                placeholder="AIzaSy..." 
+                class="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-white text-sm focus:outline-none focus:border-indigo-500"
+            >
+            <div class="flex gap-2 justify-end pt-2">
+                <button onclick="toggleSettingsModal()" class="px-4 py-2 text-xs bg-slate-800 text-slate-300 rounded-xl hover:bg-slate-700">Cancel</button>
+                <button onclick="saveApiKey()" class="px-4 py-2 text-xs bg-indigo-600 text-white rounded-xl hover:bg-indigo-500 font-medium">Save Key</button>
+            </div>
+        </div>
+    </div>
 
-    <!-- App Frontend Logic -->
+    <!-- Script Logic -->
     <script>
+        let apiKey = localStorage.getItem('gemini_api_key') || '';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if(apiKey) {
+                document.getElementById('api-key-input').value = apiKey;
+            }
+        });
+
+        function toggleSettingsModal() {
+            const modal = document.getElementById('settings-modal');
+            modal.classList.toggle('hidden');
+            modal.classList.toggle('flex');
+        }
+
+        function saveApiKey() {
+            const key = document.getElementById('api-key-input').value.trim();
+            localStorage.setItem('gemini_api_key', key);
+            apiKey = key;
+            toggleSettingsModal();
+            alert('API Key saved successfully!');
+        }
+
         function sendQuickPrompt(promptText) {
             document.getElementById('user-input').value = promptText;
             handleChatSubmit(new Event('submit'));
@@ -179,42 +202,60 @@
             const startTime = performance.now();
 
             try {
-                const response = await fetch('/.netlify/functions/chat', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ prompt })
-                });
+                let answer = '';
+                if(apiKey) {
+                    answer = await fetchGeminiResponse(prompt);
+                } else {
+                    answer = await fetchDemoResponse(prompt);
+                }
 
-                const data = await response.json();
                 removeMessage(loadingId);
-
-                if (data.error) throw new Error(data.error);
-
                 const duration = ((performance.now() - startTime) / 1000).toFixed(2);
                 document.getElementById('speed-indicator').innerText = `Response Speed: ${duration}s`;
 
-                const aiAnswer = data.candidates[0].content.parts[0].text;
-                appendMessage('ai', aiAnswer);
+                appendMessage('ai', answer);
             } catch (err) {
                 removeMessage(loadingId);
-                appendMessage('ai', '⚠️ Error fetching response: ' + err.message);
+                appendMessage('ai', '⚠️ Error fetching response: ' + err.message + '. Please click API Key Settings and verify your key.');
             }
+        }
+
+        async function fetchGeminiResponse(prompt) {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    contents: [{ parts: [{ text: prompt }] }]
+                })
+            });
+            const data = await response.json();
+            if (data.error) throw new Error(data.error.message);
+            return data.candidates[0].content.parts[0].text;
+        }
+
+        function fetchDemoResponse(prompt) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve(`This is a fast demo response for: "${prompt}".\n\nTo get real live AI answers, click "API Key Settings" in the top right and enter your free Google Gemini API key.`);
+                }, 400);
+            });
         }
 
         function appendMessage(sender, text) {
             const chatBox = document.getElementById('chat-box');
             const msgDiv = document.createElement('div');
-            msgDiv.className = `flex ${sender === 'user' ? 'justify-end' : 'justify-start'} animate-fade-in`;
+            msgDiv.className = `flex ${sender === 'user' ? 'justify-end' : 'justify-start'}`;
 
             const bubbleClass = sender === 'user' 
-                ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-2xl rounded-tr-none px-4 py-3 max-w-[85%] shadow-lg text-sm'
-                : 'glass-panel text-slate-200 rounded-2xl rounded-tl-none px-5 py-4 max-w-[90%] border border-slate-800 shadow-xl text-sm leading-relaxed prose prose-invert';
+                ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-2xl rounded-tr-none px-4 py-3 max-w-[85%] text-sm'
+                : 'glass-panel text-slate-200 rounded-2xl rounded-tl-none px-5 py-4 max-w-[90%] border border-slate-800 text-sm leading-relaxed prose prose-invert';
 
             const formattedContent = sender === 'ai' ? marked.parse(text) : escapeHtml(text);
 
             msgDiv.innerHTML = `
                 <div class="${bubbleClass}">
-                    ${sender === 'ai' ? '<div class="text-[10px] font-bold text-indigo-400 mb-1.5 uppercase tracking-wider flex items-center gap-1.5"><i class="fa-solid fa-robot"></i> Bilal Abid AI</div>' : ''}
+                    ${sender === 'ai' ? '<div class="text-[10px] font-bold text-indigo-400 mb-1.5 uppercase flex items-center gap-1.5"><i class="fa-solid fa-robot"></i> Bilal Abid AI</div>' : ''}
                     <div>${formattedContent}</div>
                 </div>
             `;
